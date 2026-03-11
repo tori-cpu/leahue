@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEAHUE | 리휴 마두카 프리미엄 헤어케어</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --olive: #4b5320;
+            --offwhite: #f7f7f5;
+            --text-main: #333333;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: var(--text-main);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        .font-brand {
+            font-family: 'Georgia', serif;
+        }
+
+        /* Slider & Animations */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            overflow: hidden;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+            height: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .slide-img-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.15);
+            z-index: 2;
+        }
+
+        /* Reveal Animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-dot {
+            width: 40px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .nav-dot.active {
+            background: white;
+            width: 80px;
+        }
+
+        /* Product Card Hover */
+        .product-card .img-box img {
+            transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .product-card:hover .img-box img {
+            transform: scale(1.08);
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- GNB (Header) -->
+    <header class="fixed w-full z-50 transition-all duration-500 bg-white/80 backdrop-blur-md border-b border-gray-100"
+        id="mainHeader">
+        <div class="max-w-[1440px] mx-auto px-8 lg:px-12 h-20 flex items-center justify-between">
+            <nav class="hidden lg:flex gap-10 text-[13px] font-medium uppercase tracking-widest">
+                <a href="#" class="hover:text-[var(--olive)] transition-colors">제품</a>
+                <a href="#" class="hover:text-[var(--olive)] transition-colors">브랜드</a>
+                <a href="#" class="hover:text-[var(--olive)] transition-colors">커뮤니티</a>
+                <a href="#" class="hover:text-[var(--olive)] transition-colors">고객지원</a>
+            </nav>
+
+            <a href="#" class="flex items-center">
+                <img src="리휴 로고 검은색 3.png" alt="LEAHUE 로고" class="h-10 w-auto object-contain">
+            </a>
+
+            <div class="flex items-center gap-6 text-[11px] text-gray-500 uppercase tracking-widest">
+                <a href="#" class="hover:text-black">Login</a>
+                <a href="#" class="hover:text-black">Join</a>
+                <a href="#" class="hover:text-black relative">Cart(0)</a>
+                <a href="#" class="hover:text-black flex items-center">Myshop <svg class="w-3 h-3 ml-1" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="m19 9-7 7-7-7" />
+                    </svg></a>
+                <button class="hover:text-black ml-2"><svg class="w-5 h-5" fill="none" stroke="currentColor"
+                        stroke-width="1.5" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.3-4.3" />
+                    </svg></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Hero Slider -->
+    <section class="slider-container">
+        <div class="slider" id="mainSlider">
+            <!-- Slide 1: Main Banner Image -->
+            <div class="slide active">
+                <img src="banner_main.png" alt="자연에서 찾은 탈모 해답, 마두카 샴푸" class="slide-img-bg">
+            </div>
+
+            <!-- Slide 2: Homepage Banner Video -->
+            <div class="slide">
+                <video autoplay muted loop playsinline class="video-bg">
+                    <source src="홈페이지 배너 영상.mp4" type="video/mp4">
+                </video>
+                <div class="slide-overlay"></div>
+                <div class="relative z-10 w-full max-w-[1440px] mx-auto px-12 text-white">
+                    <h2 class="text-sm tracking-[0.5em] mb-4 opacity-80 reveal-up" style="transition-delay: 0.1s;">
+                        NATURE &amp; SCIENCE</h2>
+                    <h1 class="text-6xl font-bold leading-tight mb-8 reveal-up" style="transition-delay: 0.3s;">자연에서 찾은
+                        탈모 해답,<br>마두카 샴푸</h1>
+                    <p class="text-lg opacity-70 mb-10 reveal-up" style="transition-delay: 0.5s;">세계가 인정한 바이오 특허 기술의 결정체
+                    </p>
+                    <a href="#"
+                        class="inline-block px-12 py-4 border border-white/40 hover:bg-white hover:text-black transition-all duration-500 reveal-up"
+                        style="transition-delay: 0.7s;">자세히보기</a>
+                </div>
+            </div>
+
+            <!-- Slide 3: Product Brand Story Video -->
+            <div class="slide">
+                <video autoplay muted loop playsinline class="video-bg">
+                    <source src="[리휴] LEHUE MADHUCA™ Story.mp4" type="video/mp4">
+                </video>
+                <div class="slide-overlay" style="background: rgba(0,0,0,0.35);"></div>
+                <div class="relative z-10 w-full max-w-[1440px] mx-auto px-12 text-center text-white">
+                    <h1 class="text-7xl font-brand tracking-[0.3em] mb-12 reveal-up">MADHUCA™ STORY</h1>
+                    <p class="text-xl opacity-90 leading-loose mb-12 reveal-up">인도의 지혜, 마두카 나무의 생명력을<br>현대 바이오 기술로 완성하다
+                    </p>
+                    <button
+                        class="w-16 h-16 rounded-full border border-white/50 flex items-center justify-center mx-auto hover:bg-white hover:text-black transition-all group">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Navigation -->
+        <div class="absolute bottom-12 left-12 z-30 flex gap-4">
+            <div class="nav-dot active" onclick="goToSlide(0)"></div>
+            <div class="nav-dot" onclick="goToSlide(1)"></div>
+            <div class="nav-dot" onclick="goToSlide(2)"></div>
+        </div>
+    </section>
+
+    <!-- Best Seller Section -->
+    <section class="py-28 max-w-[1440px] mx-auto px-12">
+        <div class="text-center mb-20 reveal-up">
+            <h2 class="text-3xl font-bold mb-3 uppercase tracking-widest">Best Seller</h2>
+            <p class="text-gray-400">[추천] 고민별 베스트 상품을 만나보세요.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <!-- Product Loop -->
+            <script>
+                const products = [
+                    { name: '마두카 안티 헤어로스 샴푸 500ml', discount: '31%', price: '29,800', old: '43,000', label: 'BEST' },
+                    { name: '마두카 스칼프 진정 토닉 100ml', discount: '20%', price: '19,200', old: '24,000', label: 'NEW' },
+                    { name: '마두카 클리닉 트리트먼트 300ml', discount: '15%', price: '25,500', old: '30,000', label: 'HOT' },
+                    { name: '마두카 에센셜 모이스처 샴푸', discount: '10%', price: '38,700', old: '43,000', label: 'BEST' }
+                ];
+                products.forEach((p, idx) => {
+                    document.write(`
+                        <div class="product-card group reveal-up" style="transition-delay: ${idx * 0.1}s">
+                            <div class="img-box aspect-[3/4] bg-[var(--offwhite)] mb-6 overflow-hidden relative flex items-center justify-center p-12">
+                                <div class="w-24 h-48 bg-[var(--olive)]/70 rounded-full shadow-xl"></div>
+                                <div class="absolute top-4 left-4 bg-[var(--olive)] text-white text-[10px] px-2 py-1 tracking-tighter font-medium">${p.label}</div>
+                                <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <button class="bg-white text-black px-6 py-3 text-[11px] tracking-widest hover:bg-[var(--olive)] hover:text-white transition-all uppercase">Quick Shop</button>
+                                </div>
+                            </div>
+                            <h3 class="text-[14px] font-medium text-gray-800 mb-3">${p.name}</h3>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-red-500 font-bold">${p.discount}</span>
+                                <span class="text-[17px] font-bold">${p.price}원</span>
+                                <span class="text-[13px] text-gray-300 line-through">${p.old}원</span>
+                            </div>
+                            <p class="text-[12px] text-gray-400 leading-relaxed">탈모 증상 완화와 두피 환경을 개선하는 기능성 케어</p>
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+    </section>
+
+    <!-- Product Line (Curated Categories) -->
+    <section class="bg-[var(--offwhite)] py-28">
+        <div class="max-w-[1440px] mx-auto px-12">
+            <h2 class="text-center text-3xl font-bold uppercase tracking-[0.3em] mb-20 reveal-up">Product Line</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Natural -->
+                <div class="group cursor-pointer reveal-up" style="transition-delay: 0.1s">
+                    <div class="aspect-[1/1.2] overflow-hidden mb-8 bg-white p-2 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=800"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-xl font-bold mb-3 tracking-widest uppercase">Natural</h4>
+                        <p class="text-gray-500 text-[14px]">민감성 두피를 위한 자연 유래 리프레쉬</p>
+                    </div>
+                </div>
+                <!-- Anti Hair Loss -->
+                <div class="group cursor-pointer reveal-up" style="transition-delay: 0.2s">
+                    <div class="aspect-[1/1.2] overflow-hidden mb-8 bg-white p-2 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1527799822344-49900423038c?q=80&w=800"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-xl font-bold mb-3 tracking-widest uppercase">Anti Hair Loss</h4>
+                        <p class="text-gray-500 text-[14px]">탈모 증상 완화의 과학적인 접근</p>
+                    </div>
+                </div>
+                <!-- Clinic -->
+                <div class="group cursor-pointer reveal-up" style="transition-delay: 0.3s">
+                    <div class="aspect-[1/1.2] overflow-hidden mb-8 bg-white p-2 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=800"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-xl font-bold mb-3 tracking-widest uppercase">Clinic</h4>
+                        <p class="text-gray-500 text-[14px]">손상된 모발을 위한 딥 컨디셔닝 솔루션</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real Review (Social Grid) -->
+    <section class="py-28 max-w-[1440px] mx-auto px-12">
+        <h2 class="text-center text-3xl font-bold uppercase tracking-[0.3em] mb-20 reveal-up">Real Review</h2>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-5">
+            <script>
+                for (let i = 1; i <= 5; i++) {
+                    document.write(`
+                        <div class="reveal-up" style="transition-delay: ${i * 0.1}s">
+                            <div class="aspect-square bg-gray-100 mb-4 overflow-hidden cursor-pointer group">
+                                <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=400&sig=${i}" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                            </div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-6 h-6 rounded-full bg-gray-200"></div>
+                                <span class="text-[11px] text-gray-500 font-medium">leahue_user_${i}</span>
+                            </div>
+                            <p class="text-[12px] text-gray-700 leading-relaxed line-clamp-2">마두카 쓰고 나서 머릿결이 정말 탄탄해진 느낌이에요. 추천합니다!</p>
+                        </div>
+                    `);
+                }
+            </script>
+        </div>
+    </section>
+
+    <!-- Bottom Brand Story Banner -->
+    <section class="h-[550px] relative flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center"
+            style="background-image: url('https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=2000');">
+        </div>
+        <div class="absolute inset-0 bg-[var(--olive)]/40 backdrop-blur-[1px]"></div>
+        <div class="relative z-10 text-center text-white reveal-up">
+            <div class="text-5xl font-brand tracking-[0.4em] mb-10">LEAHUE</div>
+            <p class="text-lg font-light tracking-widest mb-12 opacity-90">자연과 과학이 만나는 고귀한 여정</p>
+            <a href="#"
+                class="inline-block px-14 py-5 border border-white/50 hover:bg-white hover:text-black transition-all duration-500 text-sm tracking-widest">
+                BRAND STORY
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-24 border-t border-gray-100">
+        <div class="max-w-[1440px] mx-auto px-12 grid grid-cols-1 md:grid-cols-2 gap-20">
+            <div>
+                <div class="text-2xl font-brand text-[var(--olive)] mb-10 tracking-[0.2em]">LEAHUE</div>
+                <div class="text-[12px] text-gray-400 leading-loose space-y-1">
+                    <p>상호명 : (주)리휴마두카 | 대표자 : 홍길동 | 개인정보보호책임자 : 김철수</p>
+                    <p>사업자등록번호 : 123-45-67890 | 통신판매업신고 : 제2024-서울강남-1234호</p>
+                    <p>주소 : 서울특별시 강남구 어느대로 123 리휴타워 10층</p>
+                    <p>CS : 1588-1234 (평일 10:00 - 17:00 / 점심 12:00 - 13:00 / 토,일 휴무)</p>
+                    <p class="pt-8 uppercase tracking-widest">© 2026 LEAHUE. ALL RIGHTS RESERVED.</p>
+                </div>
+            </div>
+            <div class="flex flex-col md:items-end justify-between">
+                <nav class="flex gap-10 text-[13px] font-medium text-gray-700 uppercase tracking-widest">
+                    <a href="#" class="hover:text-[var(--olive)]">About</a>
+                    <a href="#" class="hover:text-[var(--olive)]">Terms</a>
+                    <a href="#" class="hover:text-[var(--olive)]">Privacy</a>
+                    <a href="#" class="hover:text-[var(--olive)]">Guide</a>
+                </nav>
+                <div class="flex gap-4 mt-12">
+                    <div
+                        class="w-10 h-10 border border-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-[var(--olive)] hover:text-white transition-all">
+                        IG</div>
+                    <div
+                        class="w-10 h-10 border border-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-[var(--olive)] hover:text-white transition-all">
+                        FB</div>
+                    <div
+                        class="w-10 h-10 border border-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-[var(--olive)] hover:text-white transition-all">
+                        YT</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Slider Logic ---
+        let currentSlide = 0;
+        const slider = document.getElementById('mainSlider');
+        const dots = document.querySelectorAll('.nav-dot');
+
+        function goToSlide(index) {
+            currentSlide = index;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        // Auto slide every 8 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % 3;
+            goToSlide(currentSlide);
+        }, 8000);
+
+        // --- Scroll Reveal Logic ---
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal-up');
+            reveals.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (elementTop < windowHeight - 80) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', () => {
+            reveal(); // Initial check
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('mainHeader');
+                if (window.scrollY > 50) {
+                    header.classList.add('h-16', 'shadow-sm', 'bg-white/95');
+                    header.querySelector('.max-w-\\[1440px\\]').classList.replace('h-20', 'h-16');
+                } else {
+                    header.classList.remove('h-16', 'shadow-sm', 'bg-white/95');
+                    header.querySelector('.max-w-\\[1440px\\]').classList.replace('h-16', 'h-20');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
